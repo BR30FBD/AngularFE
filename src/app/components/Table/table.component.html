@@ -1,0 +1,88 @@
+<h3 style="text-align: center;">Dashboard</h3>
+<div class="table-container">
+  
+  <mat-card class="table-card">
+    
+    <mat-toolbar color="primary">
+      <span>Post List</span>
+      <span class="spacer"></span>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Search" class="input-search" (keyup)="applyFilter($event)">
+      </mat-form-field>
+<button mat-raised-button color="primary" class="add-btn" (click)="addNewPost()">Add New Post</button>
+      
+    </mat-toolbar>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="content">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Content</th>
+        <td mat-cell *matCellDef="let element">{{ element.content }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>createdAt</th>
+        <td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" class="edit-btn" (click)="edit(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" class="del-btn" (click)="onDelete(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>
+
+
+<ng-container *ngIf="isModalOpen">
+    <div class="modal">
+        <form [formGroup]="postForm" class="post-modal">
+<h4 mat-dialog-title>{{ selectedPost?._id ? 'Edit Post' : 'Add Post' }}</h4>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title" placeholder="Enter title">
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Content</mat-label>
+              <textarea matInput formControlName="content" placeholder="Write content here"></textarea>
+            </mat-form-field>
+        
+            <div class="modal-actions">
+              <button mat-button (click)="onCancel()">Cancel</button>
+              <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="postForm.invalid">
+                {{ selectedPost?._id ? 'Update' : 'Create' }}
+              </button>
+            </div>
+          </form>
+    </div>
+
+</ng-container>
+
