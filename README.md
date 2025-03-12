@@ -57,3 +57,24 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Test Case Documentation
+### Test Case 1: Verify that the application is running
+**Test Case ID:** TC001
+**Objective:** To verify that the application is running and accessible.
+**Steps:**
+1. Open a web browser.
+2. Enter the application URL (e.g., `http://localhost:4200/`) in the address bar.
+3. Press Enter.
+**Expected Result:** The application's home page should be displayed, indicating that the application is running and accessible.
+**Test Data:** None
+**Test Environment:** Local development environment with Angular CLI installed.
+**Test Data:** None
+
+### Test Case 2: Verify that the application has a title
+**Test Case ID:** TC002
+**Objective:** To verify that the application has a title.
+**Steps:**
+1. Open a web browser.
+2. Enter the application URL (e.g., `http://localhost:4200/`) in the address bar.
+3. Press Enter.
+-Link :https://docs.google.com/document/d/1qIaIiCg1pmmgyTm9fQdWxGM_w4bF8VRsD5P3rtpKJAM/edit?tab=t.0
